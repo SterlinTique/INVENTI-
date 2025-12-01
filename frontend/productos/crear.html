@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear producto</title>
+  <link rel="stylesheet" href="../css/estilosv2.css">
+</head>
+<body>
+  <div class="panel-crear">
+    <h1 class="titulo-crear">➕ Crear nuevo producto</h1>
+
+    <form id="crearForm" class="form-producto">
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre del producto" required>
+      <textarea id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+      <input type="number" id="precio" name="precio" step="0.01" placeholder="Precio" required>
+
+      <p class="error-msg" id="error"></p>
+      <p class="success-msg" id="exito"></p>
+
+      <button type="submit" class="btn">Crear producto</button>
+    </form>
+
+    <div class="acciones-crear">
+      <a href="../dashboard.html" class="btn">🏠 Volver al inicio</a>
+      <a href="listar.html" class="btn">📋 Ver productos</a>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/crear.js"></script>
+</body>
+</html>

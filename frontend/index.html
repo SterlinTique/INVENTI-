@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio</title>
+  <link rel="stylesheet" href="css/estilosv2.css">
+</head>
+<body>
+  <div class="panel-inicio">
+    <h1 class="titulo-inicio">¡Bienvenido!</h1>
+    <p class="subtitulo-inicio">Has iniciado sesión correctamente.</p>
+
+    <div class="botones-inicio">
+      <h2>Gestión de productos</h2>
+      <a href="productos/listar.html" class="btn">📋 Listar productos</a>
+      <a href="productos/crear.html" class="btn">➕ Crear producto</a>
+    </div>
+
+    <div class="productos-disponibles">
+      <h2>Productos disponibles</h2>
+      <ul id="listaProductos" class="lista-productos"></ul>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/estilosv2.css">
+</head>
+<body>
+  <div class="panel-dashboard">
+    <h1 class="titulo-dashboard">📊 Panel de control</h1>
+    <p class="subtitulo-dashboard">Bienvenido. Aquí tienes un resumen de tu aplicación.</p>
+
+    <!-- Loader animado -->
+    <div id="loaderDashboard" class="loader"></div>
+
+    <!-- Tarjetas resumen -->
+    <div class="tarjetas-dashboard">
+      <div class="tarjeta fade-in">
+        <h3>Total productos</h3>
+        <p id="totalProductos">0</p>
+      </div>
+      <div class="tarjeta fade-in">
+        <h3>Último producto</h3>
+        <p id="ultimoProducto">-</p>
+      </div>
+      <div class="tarjeta fade-in">
+        <h3>Precio más alto</h3>
+        <p id="precioMaximo">-</p>
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <div class="acciones-dashboard">
+      <a href="productos/crear.html" class="btn">➕ Crear producto</a>
+      <a href="productos/listar.html" class="btn">📋 Ver productos</a>
+      <a href="loginRegistro.html" class="btn">🔒 Cerrar sesión</a>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

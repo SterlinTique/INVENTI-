@@ -1,0 +1,28 @@
+# Ignorar carpetas de entorno virtual
+env/
+backend/env/
+
+# Ignorar cachés de Python
+__pycache__/
+backend/__pycache__/
+
+# Ignorar archivos de log y bases de datos temporales
+*.log
+*.sqlite3
+
+# Ignorar archivos de configuración local
+*.env
+*.local
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de compilación o empaquetado
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar dependencias instaladas localmente (por si acaso)
+backend/venv/
+venv/

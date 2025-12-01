@@ -1,0 +1,557 @@
+/* === RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111;
+}
+
+/* === LOGIN & REGISTRO: CONTENEDOR PRINCIPAL === */
+.container {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #111 0%, #ff4500 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%, 0 50%);
+  transition: clip-path 0.7s ease;
+  z-index: 1;
+}
+
+.container.active .background {
+  clip-path: polygon(50% 0, 100% 50%, 100% 100%, 0 100%, 0 0);
+}
+
+/* === LOGIN & REGISTRO: FORMULARIOS === */
+.form-box {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  padding: 60px 40px;
+  z-index: 2;
+  transition: 0.7s ease;
+}
+
+.form-box h2 {
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+
+.form-box input::placeholder {
+  color: #aaa;
+}
+
+.form-box.Login {
+  left: 0;
+  transform: translateX(0%);
+}
+
+.form-box.Register {
+  right: 0;
+  transform: translateX(120%);
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.container.active .form-box.Login {
+  transform: translateX(-120%);
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.container.active .form-box.Register {
+  transform: translateX(0%);
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* === LOGIN & REGISTRO: PANEL LATERAL === */
+.welcome.animation {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  padding: 60px 40px;
+  background: transparent;
+  color: #fff;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  transition: transform 0.7s ease, opacity 0.7s ease, filter 0.7s ease;
+  right: 0;
+  transform: translateX(-10%);
+  opacity: 1;
+  filter: blur(0);
+}
+
+.container.active .welcome.animation {
+  left: 0;
+  right: auto;
+  align-items: flex-end;
+  text-align: right;
+  transform: translateX(10%);
+  opacity: 1;
+  filter: blur(0);
+}
+
+.welcome h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.welcome p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* === LOGIN & REGISTRO: BOTÓN DE CAMBIO === */
+.toggle-btn {
+  margin-top: 30px;
+  padding: 10px 20px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* === COMPONENTES REUTILIZABLES === */
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #ff4500;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background: #ff8c00;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,140,0,0.5);
+}
+
+/* === MENSAJES DE ERROR / ÉXITO === */
+.error-msg, .success-msg {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  text-align: center;
+}
+
+.error-msg {
+  color: #ff4d4d;
+}
+
+.success-msg {
+  color: #4caf50;
+}
+
+/* === CRUD: PRODUCTOS (FUTURO) === */
+/* .tabla-productos { ... } */
+/* .form-producto { ... } */
+/* .card-producto { ... } */
+
+
+
+/* === INICIO: PANTALLA DE BIENVENIDA === */
+
+.panel-inicio {
+  width: 800px;
+  max-width: 90%;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  animation: fadeIn 0.8s ease;
+}
+
+.titulo-inicio {
+  font-size: 32px;
+  color: #ff4500;
+  text-align: center;
+}
+
+.subtitulo-inicio {
+  font-size: 18px;
+  text-align: center;
+  color: #ccc;
+}
+
+.botones-inicio {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.botones-inicio h2 {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.productos-disponibles {
+  margin-top: 20px;
+}
+
+.lista-productos {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.lista-productos li {
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+/* === ANIMACIONES === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* === CRUD: LISTAR PRODUCTOS === */
+
+.panel-listar {
+  width: 800px;
+  max-width: 90%;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: auto;
+  animation: fadeIn 0.8s ease;
+}
+
+.titulo-listar {
+  font-size: 28px;
+  color: #ff4500;
+  text-align: center;
+}
+
+.lista-productos {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.lista-productos li {
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(255,255,255,0.05);
+  color: #fff;
+  position: relative;
+}
+
+.acciones-producto {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-sm {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #ff4500;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-sm:hover {
+  background: #ff8c00;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(255,140,0,0.4);
+}
+
+.acciones-listar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Reutilizamos animación */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* === CRUD: CREAR PRODUCTO === */
+
+.panel-crear {
+  width: 800px;
+  max-width: 90%;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: auto;
+  animation: fadeIn 0.8s ease;
+}
+
+.titulo-crear {
+  font-size: 28px;
+  color: #ff4500;
+  text-align: center;
+}
+
+.form-producto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-producto input,
+.form-producto textarea {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(255,255,255,0.1);
+  font-size: 16px;
+}
+
+.form-producto textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.acciones-crear {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+
+/* === CRUD: EDITAR PRODUCTO === */
+
+.panel-editar {
+  width: 800px;
+  max-width: 90%;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: auto;
+  animation: fadeIn 0.8s ease;
+}
+
+.titulo-editar {
+  font-size: 28px;
+  color: #ff4500;
+  text-align: center;
+}
+
+.acciones-editar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+
+
+
+
+/* === DASHBOARD === */
+
+.panel-dashboard {
+  width: 900px;
+  max-width: 95%;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: auto;
+  animation: fadeIn 0.8s ease;
+}
+
+.titulo-dashboard {
+  font-size: 32px;
+  color: #ff4500;
+  text-align: center;
+}
+
+.subtitulo-dashboard {
+  text-align: center;
+  color: #ccc;
+}
+
+.tarjetas-dashboard {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tarjeta {
+  flex: 1;
+  min-width: 200px;
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
+
+.tarjeta h3 {
+  color: #ff8c00;
+  margin-bottom: 10px;
+}
+
+.tarjeta p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.acciones-dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+
+
+/* === RESPONSIVE: DASHBOARD === */
+@media screen and (max-width: 600px) {
+  .panel-dashboard {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .tarjetas-dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tarjeta {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .acciones-dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+}
+
+
+
+/* === LOADER === */
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ff4500;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
