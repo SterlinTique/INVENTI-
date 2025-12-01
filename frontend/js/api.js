@@ -1,14 +1,14 @@
-const API_BASE_URL = 'http://localhost:5000/api'; 
+const API_BASE_URL = 'http://localhost:5000/api';
 
 async function loginUsuario(email, password) {
-    try {
-        const response = await fetch(`${API_BASE_URL}/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+    try { // el fetch sirve para hacer peticiones HTTP
+        const response = await fetch(`${API_BASE_URL}/login`, { 
+            method: 'POST', // metodo de la peticion
+            headers: { 'Content-Type': 'application/json' }, // tipo de contenido
+            body: JSON.stringify({ email, password }) // ya que el body debe ser un string se convierte el objeto a string
         });
-
-        const data = await response.json();
+            // el await hace que la ejecucion espere hasta que la promesa se resuelva
+        const data = await response.json(); // espera la respuesta y la convierte a JSON
         return data;
     } catch (error) {
         console.error('Error al conectar con la API:', error);
@@ -17,12 +17,12 @@ async function loginUsuario(email, password) {
 }
 
 
-async function registrarUsuario(username, password, email) {
+async function registrarUsuario(username, password, email, confirmarContraseña) {
     try {
         const response = await fetch(`${API_BASE_URL}/registro`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password, email })
+            body: JSON.stringify({ username, password, email, confirmarContraseña })
         });
 
         const data = await response.json();

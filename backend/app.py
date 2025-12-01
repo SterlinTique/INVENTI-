@@ -38,17 +38,27 @@ def api_login():
 def api_registro():
     data = request.get_json()
     username = data.get('username')
-    password = generate_password_hash(data.get('password'))  # Hashed password
     email = data.get('email')
-    usuario = Usuario(username=username, password=password, email=email)
-    db.session.add(usuario)
-    db.session.commit()
-    return jsonify({"success": True, "message": "Usuario registrado"}), 201
+    password = data.get('password')
+    confirmar_password = data.get('confirmarContraseña')
+
+    # para validar que las contraseñas coincidan
+    if password != confirmar_password:
+        return jsonify({"success": False, "message": "Las contraseñas no coinciden"}), 400
+    # para validar que el email no este ya registrado
+    if Usuario.query.filter_by(email=email).first(): # el first sirve para obtener el primer resultado o None si no existe
+        return jsonify({"success": False, "message": "El correo ya está registrado"}), 400
+
+    hashed_password = generate_password_hash(password) # despues de confirmar la contra ahora si se hashea 
+    usuario = Usuario(username=username, password=hashed_password, email=email) # crea nuevo usuario
+    db.session.add(usuario) # agrega a la sesion
+    db.session.commit() # guarda en la base de datos
+    return jsonify({"success": True, "message": "Usuario registrado"}), 201 
 
 # Listar productos
 @app.route('/api/productos', methods=['GET'])
 def api_listar_productos():
-    productos = Producto.query.all()
+    productos = Producto.query.all() # obtener todos los productos
     resultado = [
         {"id": p.id, "nombre": p.nombre, "descripcion": p.descripcion, "precio": p.precio}
         for p in productos
@@ -84,12 +94,14 @@ def api_editar_producto(id):
 # Eliminar producto
 @app.route('/api/productos/<int:id>', methods=['DELETE'])
 def api_eliminar_producto(id):
-    producto = Producto.query.get(id)
-    if not producto:
+    producto = Producto.query.get(id) 
+    
+    if not producto: # si el producto no existe
         return jsonify({"success": False, "message": "Producto no encontrado"}), 404
+    
     db.session.delete(producto)
     db.session.commit()
     return jsonify({"success": True, "message": "Producto eliminado"}), 200
 
-if __name__ == '__main__':
+if __name__ == '__main__': # ejecuta la aplicación Flask
     app.run(debug=True)
