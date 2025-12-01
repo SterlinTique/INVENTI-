@@ -25,12 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Login
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const username = document.getElementById('loginUsername').value;
+    const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
     const errorMsg = document.getElementById('loginError');
 
-    const resultado = await loginUsuario(username, password);
-
+    const resultado = await loginUsuario(email, password);
     if (resultado.success) {
       window.location.href = 'dashboard.html';
     } else {

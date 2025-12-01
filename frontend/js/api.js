@@ -1,11 +1,11 @@
-const API_BASE_URL = 'http://localhost:5000/api'; // Cambia esto en producción
+const API_BASE_URL = 'http://localhost:5000/api'; 
 
-async function loginUsuario(username, password) {
+async function loginUsuario(email, password) {
     try {
         const response = await fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();

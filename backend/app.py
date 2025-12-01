@@ -25,9 +25,9 @@ with app.app_context(): # Probar la conexión a la base de datos
 @app.route('/api/login', methods=['POST']) # Ruta para el login
 def api_login(): 
     data = request.get_json() # Obtener datos JSON del request
-    username = data.get('username') # Obtener el nombre de usuario
+    email = data.get('email') # Obtener el email
     password = data.get('password') # Obtener la contraseña
-    usuario = Usuario.query.filter_by(username=username).first() # Buscar el usuario en la base de datos
+    usuario = Usuario.query.filter_by(email=email).first() # Buscar el email en la base de datos
     # Verificar la contraseña
     if usuario and check_password_hash(usuario.password, password): # Si la contraseña es correcta
         return jsonify({"success": True, "message": "Login correcto"}), 200 # Devolver respuesta exitosa mediante un 200
