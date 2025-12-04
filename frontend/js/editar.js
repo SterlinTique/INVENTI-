@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const form = document.getElementById('editarForm');
   const errorMsg = document.getElementById('error');
   const exitoMsg = document.getElementById('exito');
+  const categoriaSelect = document.getElementById('id_categoria');
 
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
@@ -24,6 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('nombre').value = producto.nombre;
   document.getElementById('descripcion').value = producto.descripcion;
   document.getElementById('precio').value = producto.precio;
+  document.getElementById('fecha_vencimiento').value = producto.fecha_vencimiento || '';
+  categoriaSelect.value = producto.id_categoria;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -31,8 +34,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const nombre = document.getElementById('nombre').value;
     const descripcion = document.getElementById('descripcion').value;
     const precio = parseFloat(document.getElementById('precio').value);
+    const fecha_vencimiento = document.getElementById('fecha_vencimiento').value || null;
+    const id_categoria = parseInt(categoriaSelect.value);
 
-    const resultado = await actualizarProducto(id, nombre, descripcion, precio);
+    const resultado = await actualizarProducto(id, nombre, descripcion, precio, fecha_vencimiento, id_categoria);
 
     if (resultado.success) {
       exitoMsg.textContent = resultado.message;

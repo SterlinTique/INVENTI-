@@ -17,12 +17,12 @@ async function loginUsuario(email, password) {
 }
 
 
-async function registrarUsuario(username, password, email, confirmarContraseña) {
+async function registrarUsuario(nombre, password, email, confirmarContraseña) {
     try {
         const response = await fetch(`${API_BASE_URL}/registro`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password, email, confirmarContraseña })
+            body: JSON.stringify({ nombre, password, email, confirmarContraseña })
         });
 
         const data = await response.json();
@@ -46,12 +46,12 @@ async function obtenerProductos() {
 }
 
 
-async function crearProducto(nombre, descripcion, precio) {
+async function crearProducto(nombre, descripcion, precio_venta, fecha_vencimiento, id_categoria) {
     try {
         const response = await fetch(`${API_BASE_URL}/productos`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nombre, descripcion, precio })
+            body: JSON.stringify({ nombre, descripcion, precio_venta, fecha_vencimiento, id_categoria })
         });
 
         const data = await response.json();
@@ -88,12 +88,13 @@ async function obtenerProductoPorId(id) {
     }
 }
 
-async function actualizarProducto(id, nombre, descripcion, precio) {
+
+async function actualizarProducto(id, nombre, descripcion, precio_venta, fecha_vencimiento, id_categoria) {
     try {
         const response = await fetch(`${API_BASE_URL}/productos/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nombre, descripcion, precio })
+            body: JSON.stringify({ nombre, descripcion, precio_venta, fecha_vencimiento, id_categoria})
         });
 
         const data = await response.json();
@@ -101,5 +102,62 @@ async function actualizarProducto(id, nombre, descripcion, precio) {
     } catch (error) {
         console.error('Error al actualizar producto:', error);
         return { success: false, message: 'Error de conexión con el servidor' };
+    }
+}
+
+
+async function obtenerInventario() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/inventario`);
+        return await response.json();
+    } catch (error) {
+        console.error('Error al obtener inventario:', error);
+        return [];
+    }
+}
+
+async function actualizarInventario(id, stock_actual, stock_minimo, fecha_ultima_entrada) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/inventario/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ stock_actual, stock_minimo, fecha_ultima_entrada })
+        });
+        return await response.json();
+    } catch (error) {
+        console.error('Error al actualizar inventario:', error);
+        return { success: false, message: 'Error de conexión con el servidor' };
+    }
+}
+
+async function obtenerAlertasInventario() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/inventario/alertas`);
+        return await response.json();
+    } catch (error) {
+        console.error('Error al obtener alertas de inventario:', error);
+        return [];
+    }
+}
+
+
+// pal modo completo
+async function obtenerReporteGeneral() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/reporte`);
+        return await response.json();
+    } catch (error) {
+        console.error('Error al obtener reporte general:', error);
+        return [];
+    }
+}
+
+async function obtenerReporteCategorias() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/reporte/categorias`);
+        return await response.json();
+    } catch (error) {
+        console.error('Error al obtener reporte por categorías:', error);
+        return [];
     }
 }

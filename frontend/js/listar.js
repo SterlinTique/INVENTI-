@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     item.innerHTML = `
       <strong>${p.nombre}</strong> - $${p.precio}
       <p>${p.descripcion}</p>
+      <p>Vence: ${p.fecha_vencimiento ? p.fecha_vencimiento : 'N/A'}</p>
       <div class="acciones-producto">
         <a href="editar.html?id=${p.id}" class="btn-sm">✏️ Editar</a>
         <button data-id="${p.id}" class="btn-sm eliminarBtn">🗑️ Eliminar</button>

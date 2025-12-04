@@ -31,7 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const resultado = await loginUsuario(email, password);
     if (resultado.success) {
-      window.location.href = 'dashboard.html';
+      if (resultado.rol === 1) {
+        window.location.href = 'dashboard.html';
+      } else {
+        window.location.href = 'index.html';
+      }
     } else {
       errorMsg.textContent = resultado.message;
       errorMsg.style.opacity = '1';
@@ -42,14 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Registro
   document.getElementById('registroForm').addEventListener('submit', async (e) => {
     e.preventDefault(); // para que no recargue la pagina
-    const username = document.getElementById('registerUsername').value;
+    const nombre = document.getElementById('registerNombre').value;
     const password = document.getElementById('registerPassword').value;
     const email = document.getElementById('registerEmail').value;
     const confirmarPassword = document.getElementById('registerConfirmPassword').value;
     const errorMsg = document.getElementById('registerError'); // para mostrar errores
     const successMsg = document.getElementById('registerSuccess'); // para mostrar exito
 
-    const resultado = await registrarUsuario(username, password, email, confirmarPassword);
+    const resultado = await registrarUsuario(nombre, password, email, confirmarPassword);
 
     if (resultado.success) {
       successMsg.textContent = resultado.message;

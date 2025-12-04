@@ -14,6 +14,23 @@
       <textarea id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
       <input type="number" id="precio" name="precio" step="0.01" placeholder="Precio" required>
 
+      
+      <input type="date" id="fecha_vencimiento" name="fecha_vencimiento">
+
+      
+      <select id="id_categoria" name="categoria" required>
+        <option value="">-- Categoría --</option>
+        <option value="1">Electrónica</option>
+        <option value="2">Lácteos</option>
+        <option value="3">Frutas y verduras</option>
+        <option value="4">Enlatados</option>
+        <option value="5">Bebidas</option>
+        <option value="6">Hogar</option>
+        <option value="7">Snack</option>
+        <option value="8">Alimentos</option>
+        <option value="9">Higiene</option>
+      </select>
+
       <p class="error-msg" id="error"></p>
       <p class="success-msg" id="exito"></p>
 
