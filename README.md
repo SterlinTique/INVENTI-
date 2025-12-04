@@ -48,6 +48,16 @@ Este proyecto fue desarrollado con el objetivo de aplicar conceptos claves y mod
 │ │ └── editar.js
 ```
 
+
+## NORMALIZACÓN
+
+![NORMALIZACIÓN](./img/1nf.png)
+![NORMALIZACIÓN](./img/2nf.png)
+![NORMALIZACIÓN](./img/3nf.png)
+
+## DOCUMENTACIÓN
+[Descargar documentación del proyecto en PDF](./img/Inventi+.pdf)
+
 ## Funcionalidades
 
 - Registro y login de usuarios con contraseña encriptada
@@ -73,7 +83,7 @@ Este proyecto fue desarrollado con el objetivo de aplicar conceptos claves y mod
 
 ## Uso
 
-1. Abre `frontend/login.html` en tu navegador.
+1. Abre `frontend/loginRegistro.html` en tu navegador.
 2. Regístrate y accede con tus credenciales.
 3. Navega entre las páginas para listar, crear, editar o eliminar productos.
 4. El frontend se comunica con el backend vía API REST.
