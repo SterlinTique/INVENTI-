@@ -55,6 +55,12 @@ Este proyecto fue desarrollado con el objetivo de aplicar conceptos claves y mod
 ![NORMALIZACIÓN](./img/2nf.png)
 ![NORMALIZACIÓN](./img/3nf.png)
 
+## DIAGRAMAS
+### DIAGRAMA RELACIONAL
+![DIAGRAMA_RELACIONAL](./img/DR.jpg)
+### DIAGRAMA ENTIDAD RELACIÓN
+![DIAGRAMA_ENTIDAD_RELACIÓN](./img/DER.jpg)
+
 ## DOCUMENTACIÓN
 [Descargar documentación del proyecto en PDF](./img/Inventi+.pdf)
 
